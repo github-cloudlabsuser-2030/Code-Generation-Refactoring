@@ -1,37 +1,24 @@
-#A poorly written example of a program in Python. It prompts the user for the number of elements to sum, takes those integers as input, and handles some basic error cases
+def obtener_enteros(n):
+    arr = []
+    print(f"Introduce {n} enteros:")
+    for _ in range(n):
+        while True:
+            try:
+                numero = int(input())
+                arr.append(numero)
+                break
+            except ValueError:
+                print("Entrada no válida. Por favor, introduce un entero válido.")
+    return arr
 
-MAX = 100
-
-def calculate_sum(arr):
-   result = 0
-   for num in arr:
-      result += num
-   return result
+def sumar_elementos(arr):
+    return sum(arr)
 
 def main():
-   try:
-      n = int(input("Enter the number of elements (1-100): "))
-      if not 1 <= n <= MAX:
-            print("Invalid input. Please provide a digit ranging from 1 to 100.")
-            exit(1)
-
-      arr = []
-
-      print(f"Enter {n} integers:")
-      for _ in range(n):
-            try:
-               arr.append(int(input()))
-            except ValueError:
-               print("Invalid input. Please enter valid integers.")
-               exit(1)
-
-      total = calculate_sum(arr)
-
-      print("Sum of the numbers:", total)
-
-   except KeyboardInterrupt:
-      print("\nProgram terminated by user.")
-      exit(1)
+    n = int(input("¿Cuántos enteros deseas introducir? "))
+    enteros = obtener_enteros(n)
+    suma = sumar_elementos(enteros)
+    print(f"La suma de los elementos es: {suma}")
 
 if __name__ == "__main__":
-   main()
+    main()
